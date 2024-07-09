@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impulsa tu negocio con IA</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="icon" href="Resources/logo_blue.png" type="image/png">
+
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">Aletheai Solutions</a>
+            </div>
+            <button id="menu-toggle" aria-label="Toggle menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="Products/Products.html">Productos</a></li>
+                    <li><a href="About/about.html">Acerca de</a></li>
+                    <li><a id="cta-js" href="Contact/contact.html" class="cta-button">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Chatbot Section -->
+        <section id="chatter">
+            <div class="container">
+                <div id="chat-container">
+                    <div id="chat-title">
+                        ALETHEAI
+                        <button id="close-chat" aria-label="Close chat">X</button>
+                    </div>
+                    <div id="chat-messages"></div>
+                    <div id="chat-input">
+                        <textarea id="user-input" placeholder="Escribir..." rows="1"></textarea>
+                        <button id="send-button">Send</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hero Section -->
+         <section id="hero">
+            <canvas id="waveCanvas"></canvas>
+            <div class="container">
+                <h1>IMPULSA TU EMPRESA CON IA</h1>
+                <div id="heroscroll">
+                    <a href="#products" class="scroll-down">
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section id="products">
+            <div class="container">
+                <h2 id="nhh2">PRINCIPALES HERRAMIENTAS</h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <h3>Market Master</h3>
+                        <p>Eleva la presencia digital de tu negocio con la creación de contenido y el compromiso del cliente impulsados por IA.</p>
+                        <ul>
+                            <li>Gestión automatizada de redes sociales</li>
+                            <li>Servicio al cliente potenciado por IA</li>
+                            <li>Procesamiento inteligente de facturas</li>
+                            <li>Estrategias de marketing basadas en datos</li>
+                        </ul>
+                        <div class="button-container">
+                            <a href="#" class="button">Más Información</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <h3>DuckAssistant</h3>
+                        <p>Revoluciona la comunicación en el sector salud con chatbots de IA.</p>
+                        <ul>
+                            <li>Programación de citas simplificada</li>
+                            <li>Tareas administrativas automatizadas</li>
+                            <li>Comunicación mejorada entre pacientes y doctores</li>
+                            <li>Análisis de datos en tiempo real para proveedores de salud</li>
+                        </ul>
+                        <div class="button-container">
+                            <a href="#" class="button">Más Información</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <h3>Billy Assistant</h3>
+                        <p>Simplifica la gestión de facturas con verificación impulsada por IA.</p>
+                        <ul>
+                            <li>Verificaciones instantáneas del estado de facturas a través de WhatsApp</li>
+                            <li>Información detallada de pagos al alcance de tu mano</li>
+                            <li>Integración perfecta con sistemas existentes</li>
+                            <li>Gestión mejorada de relaciones con proveedores</li>
+                        </ul>
+                        <div class="button-container">
+                            <a href="#" class="button">Más Información</a>
+                        </div>
+                    </div>
+                </div>
+            </div>   
+        </section>
+        <section id="process">
+            <div class="container">
+                <h2 id="nph2">NUESTRO PROCESO</h2>
+                <div class="journey-steps">
+                    <div class="step">
+                        <div class="step-icon"><i class="fas fa-handshake"></i></div>
+                        <h3>Conectar</h3>
+                        <p>Interactúa con nuestro equipo para discutir tus desafíos y objetivos únicos.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon"><i class="fas fa-project-diagram"></i></div>
+                        <h3>Personalizar</h3>
+                        <p>Adaptamos nuestras soluciones de IA para integrarse perfectamente en tus operaciones.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon"><i class="fas fa-rocket"></i></div>
+                        <h3>Lanzar</h3>
+                        <p>Experimenta una integración fluida con nuestras interfaces de usuario intuitivas.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon"><i class="fas fa-chart-line"></i></div>
+                        <h3>Prosperar</h3>
+                        <p>Observa cómo tu eficiencia se dispara y tu negocio se transforma.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="featured-enterprises" class="featured-enterprises-section">
+            <div class="container">
+                <h2>INDUSTRIAS QUE IMPULSAMOS</h2>
+                <div class="enterprises-grid">
+                    <div class="enterprise-card">
+                        <div class="enterprise-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <h3>Comercio Electrónico</h3>
+                        <p>Optimiza la experiencia del cliente y aumenta las ventas con IA.</p>
+                    </div>
+                    <div class="enterprise-card">
+                        <div class="enterprise-icon">
+                            <i class="fas fa-hospital"></i>
+                        </div>
+                        <h3>Salud</h3>
+                        <p>Mejora la atención al paciente y la eficiencia operativa.</p>
+                    </div>
+
+                    <div class="enterprise-card">
+                        <div class="enterprise-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3>Educación</h3>
+                        <p>Personaliza el aprendizaje y mejora la gestión educativa.</p>
+                    </div>
+                    <div class="enterprise-card">
+                        <div class="enterprise-icon">
+                            <i class="fas fa-hotel"></i>
+                        </div>
+                        <h3>Hospitalidad</h3>
+                        <p>Eleva la experiencia del huésped y optimiza las operaciones.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Trusted By Section -->
+        <section id="trusted-by">
+            <div class="container">
+                <h2>EMPRESAS QUE TRABAJAN CON NOSOTROS</h2>
+                <div class="companies-grid">
+                    <div class="company-card">
+                        <img src="Resources/cerveceria-01.png" alt="Company 1 Logo">
+                    </div>
+                    <div class="company-card">
+                        <img src="Resources/colegio.png" alt="Company 2 Logo">
+                    </div>
+                    <div class="company-card">
+                        <img src="Resources/toscana.png" alt="Company 3 Logo">
+                    </div>
+                    <div class="company-card">
+                        <img src="Resources/zonacero.png" alt="Company 4 Logo">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="informative" class="informative-section">
+            <div class="container">
+                <h2>ACERCA DE LA INTELIGENCIA ARTIFICIAL</h2>
+                <p>La inteligencia artificial (IA) es una rama de la informática que se enfoca en la creación de sistemas capaces de realizar tareas que normalmente requieren de la inteligencia humana. Estas tareas incluyen el reconocimiento de voz, el aprendizaje, la planificación y la resolución de problemas.</p>
+                <p>A continuación, te mostramos algunas áreas clave de la IA:</p>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>Aprendizaje Automático</h3>
+                        <p>El aprendizaje automático (machine learning) es una subdisciplina de la IA que permite a las máquinas aprender de los datos y mejorar su rendimiento con el tiempo sin ser programadas explícitamente para cada tarea.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Procesamiento del Lenguaje Natural</h3>
+                        <p>El procesamiento del lenguaje natural (NLP) se enfoca en la interacción entre las computadoras y el lenguaje humano, permitiendo a las máquinas entender, interpretar y generar lenguaje humano de manera efectiva.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Visión por Computadora</h3>
+                        <p>La visión por computadora (computer vision) es una rama de la IA que permite a las máquinas interpretar y comprender el mundo visual, utilizando imágenes y videos para identificar objetos, personas, y más.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Robótica</h3>
+                        <p>La robótica combina la IA con la ingeniería para diseñar y construir robots que pueden realizar tareas complejas de manera autónoma, desde la fabricación hasta la exploración espacial.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Sistemas Expertos</h3>
+                        <p>Los sistemas expertos son programas de computadora que emulan el juicio y el comportamiento de un humano o una organización que tiene conocimientos y experiencia en un campo específico.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Redes Neuronales</h3>
+                        <p>Las redes neuronales son sistemas de IA inspirados en el cerebro humano, compuestas por nodos (neuronas) que se conectan y trabajan juntos para procesar información y aprender de manera similar a como lo hace el cerebro humano.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="compromiso-section">
+            <div class="container">
+                <div class="compromiso-content">
+                    <h2>COMPROMISO SOCIAL</h2>
+                    <p>En AletheAI Solutions, creemos que la innovación tecnológica debe ir de la mano con el progreso social y la sostenibilidad ambiental. Nuestro compromiso es transformar la innovación en IA en un impacto positivo para la sociedad y el planeta.</p>
+                    
+                    <div class="objetivos">
+                        <h3>Nuestro Compromiso con la Agenda 2030:</h3>
+                        <p>Alineamos nuestras operaciones y soluciones de IA con los Objetivos de Desarrollo Sostenible (ODS) de la ONU, enfocándonos en:</p>
+                        <ul>
+                            <li><strong>ODS 4 - Educación de Calidad:</strong> Desarrollamos herramientas de IA para personalizar y mejorar la experiencia educativa.</li>
+                            <li><strong>ODS 9 - Industria, Innovación e Infraestructura:</strong> Fomentamos la innovación tecnológica sostenible en diversos sectores.</li>
+                            <li><strong>ODS 13 - Acción por el Clima:</strong> Utilizamos IA para optimizar procesos y reducir la huella de carbono en las industrias.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="responsabilidad">
+                        <h3>Responsabilidad Social y Cultural:</h3>
+                        <p>Nuestra aproximación a la IA se basa en principios éticos y culturalmente responsables:</p>
+                        <ul>
+                            <li>Desarrollamos soluciones de IA que respetan y promueven la diversidad cultural.</li>
+                            <li>Ofrecemos programas de capacitación en IA para comunidades subrepresentadas en el sector tecnológico.</li>
+                            <li>Colaboramos con organizaciones locales para aplicar la IA en proyectos de impacto social.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="blog" class="blog-section">
+            <div class="container">
+                <h2>NOTICIAS DE TECNOLOGÍA</h2>
+                <div id="blog-posts" class="blog-posts-grid">
+                    <!-- Aquí se insertarán los artículos de noticias mediante JavaScript -->
+                </div>
+            </div>
+        </section>
+
+</head>
+<body>
+    </main>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Acerca de nosotros</h4>
+                    <ul>
+                        <li><a href="About/About.html">Acerca de</a></li>
+                        <li><a href="TC-PP/tyc.html" target="_blank">Términos y Condiciones</a></li>
+                        <li><a href="">Política de Privacidad</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <ul>
+                        <li><a href="mailto:aletheaisolutions@gmail.com"><i class="fas fa-envelope"></i> Envia un correo</a></li>
+                        <li><a href="https://wa.me/2228227500" target="_blank"><i class="fab fa-whatsapp"></i> Escríbenos</a></li>
+                        <li><a href="tel:+5212228227500" onclick="copyToClipboard('+12345678901')"><i class="fas fa-phone-alt"></i> Llámanos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Síguenos</h4>
+                    <div class="social-icons">
+                        <a href="https://www.instagram.com/alethe.iasolutions"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 AletheAI Solutions. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        const canvas = document.getElementById('waveCanvas');
+const ctx = canvas.getContext('2d');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const numLines = 12;
+const numPoints = 200;
+let time = 0;
+
+function createColorGradient(t) {
+    const r = Math.sin(t * 0.5) * 127 + 128;
+    const g = Math.sin(t * 0.5 + 2) * 127 + 128;
+    const b = Math.sin(t * 0.5 + 4) * 127 + 128;
+    return `rgba(${r}, ${g}, ${b}, 0.5)`;
+}
+
+function drawDancingLine(index, color) {
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+    const maxRadius = Math.min(canvas.width, canvas.height) * 0.4;
+
+    ctx.beginPath();
+    for (let i = 0; i <= numPoints; i++) {
+        const t = i / numPoints;
+        const angle = (index / numLines + t) * Math.PI * 2;
+        
+        const radiusGrowth = Math.pow(t, 0.5 + 0.5 * Math.sin(time * 0.5));
+        const baseRadius = maxRadius * radiusGrowth;
+
+        const waveOffset1 = Math.sin(angle * 8 + time * 2 + index) * 20 * t;
+        const waveOffset2 = Math.cos(angle * 5 - time * 1.5 + index * 0.7) * 15 * t;
+        const waveOffset3 = Math.sin(time * 3 + index * 0.5) * 10 * t;
+
+        const radius = baseRadius + waveOffset1 + waveOffset2 + waveOffset3;
+        
+        const x = centerX + radius * Math.cos(angle);
+        const y = centerY + radius * Math.sin(angle);
+        
+        if (i === 0) {
+            ctx.moveTo(x, y);
+        } else {
+            ctx.lineTo(x, y);
+        }
+    }
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 2;
+    ctx.stroke();
+}
+
+function animate() {
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.1)'; // Slightly transparent black for trail effect
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    for (let i = 0; i < numLines; i++) {
+        const color = createColorGradient(time * 0.1 + i * 0.5);
+        drawDancingLine(i, color);
+    }
+
+    time += 0.03;
+    requestAnimationFrame(animate);
+}
+
+animate();
+
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
+// JavaScript: Change header styles on scroll
+window.addEventListener('scroll', function() {
+    var header = document.querySelector('header'); // Adjust the selector as needed
+    var headerElements = header.querySelectorAll('*'); // Selects all child elements within the header
+
+    if (window.scrollY > 50) { // Threshold value, adjust as needed
+        header.style.backgroundColor = '#fff'; // Change header background to white
+        headerElements.forEach(function(element) {
+            element.style.color = '#222'; // Change text color of all elements to #222
+        });
+    } else {
+        header.style.backgroundColor = ''; // Revert header background to original
+        headerElements.forEach(function(element) {
+            element.style.color = ''; // Revert text color of all elements to original
+        });
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.getElementById('menu-toggle');
+    const mainNav = document.getElementById('main-nav');
+
+    menuToggle.addEventListener('click', function() {
+        menuToggle.classList.toggle('active');
+        mainNav.classList.toggle('active');
+    });
+});
+
+function copyToClipboard(text) {
+    if (!navigator.clipboard) {
+        // Clipboard API not available
+        alert('Clipboard not supported, please manually copy the phone number.');
+        return;
+    }
+    navigator.clipboard.writeText(text).then(function() {
+        alert('Phone number copied to clipboard.');
+    }, function(err) {
+        console.error('Could not copy text: ', err);
+    });
+}
+
+// Function to add the white font color class on scroll
+function handleScroll() {
+    const ctaButton = document.getElementById('cta-js');
+    if (ctaButton) {
+        ctaButton.classList.add('scroll-white-font');
+    }
+}
+
+// Attach the scroll event listener to the window
+window.addEventListener('scroll', handleScroll);
+
+async function fetchNews() {
+            const apiKey = 'rkawFG6lmYl0WGXU6ARfIRGLMJZp3sakpuTMA3IKs1MzPdEw';
+            const url = `https://api.currentsapi.services/v1/latest-news?category=technology&apiKey=${apiKey}`;
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                displayNews(data.news.slice(0, 6)); // Mostrar solo las primeras 6 noticias
+            } catch (error) {
+                console.error('Error fetching news:', error);
+            }
+        }
+
+        function displayNews(articles) {
+            const blogPostsContainer = document.getElementById('blog-posts');
+            blogPostsContainer.innerHTML = '';
+
+            articles.forEach(article => {
+                const postCard = document.createElement('div');
+                postCard.classList.add('blog-post-card');
+
+                postCard.innerHTML = `
+                    <h3>${article.title}</h3>
+                    <p>${article.description || ''}</p>
+                    <a href="${article.url}" target="_blank">Leer más</a>
+                `;
+
+                blogPostsContainer.appendChild(postCard);
+            });
+        }
+
+        // Llamar a la función fetchNews al cargar la página
+        document.addEventListener('DOMContentLoaded', fetchNews);
+
+
+    </script>
+</body>
+</html>

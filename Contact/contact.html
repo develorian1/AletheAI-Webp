@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impulsa tu negocio con IA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="icon" href="../Resources/logo_blue.png" type="image/png">
+
+</head>
+<body>
+    <style>
+        /* Global Variables */
+:root {
+    --primary-color: #0d71e4;
+    --secondary-color: #378aff;
+    --accent-color: #ff6b6b;
+    --text-color: #333;
+    --bg-color: #ffffff;
+    --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    --box-bg-color: #f9f9f9;
+}
+
+/* Typography */
+@font-face {
+    font-family: 'Rubik';
+    src: url('../Fonts/Rubik/Rubik-VariableFont_wght.ttf') format('truetype');
+}
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Rubik', sans-serif;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+    cursor: default;
+}
+
+body {
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Chatbot Styles */
+#chat-container {
+    display: none;
+    width: 300px;
+    height: 500px;
+    border: 1px solid #ccc;
+    border-radius: 20px 0 0 20px;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    flex-direction: column;
+    z-index: 1001;
+}
+
+#chat-title {
+    border-radius: 20px 0px 0 0;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#close-chat {
+    cursor: pointer;
+    color: white;
+    border: none;
+    font-size: 1.2em;
+    display: flex;
+    background: none;
+}
+
+#chat-messages {
+    background-color: rgb(255, 255, 255);
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.message {
+    max-width: 70%;
+    word-wrap: break-word;
+    margin-bottom: 10px;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.user-message {
+    align-self: flex-end;
+    background-color: #007bff;
+    color: white;
+}
+
+.bot-message {
+    align-self: flex-start;
+    background-color: #f1f1f1;
+    color: black;
+}
+
+#chat-input {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+}
+
+#user-input {
+    flex-grow: 1;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    resize: none;
+    overflow: hidden;
+    min-height: 20px;
+    max-height: 100px;
+}
+
+#send-button {
+    margin-left: 5px;
+    padding: 5px 10px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 9px;
+    cursor: pointer;
+    align-self: center;
+}
+
+/* Header Styles */
+header {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    transition: 0.6s;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 20px;
+    height: 80px;
+}
+
+.logo a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+#cta-js{
+    background-color: var(--primary-color);
+    border-radius: 5px;
+}
+.scroll-white-font {
+    color: white !important; /* Use !important to override other styles if necessary */
+}
+
+/* Navigation Styles */
+nav ul {
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+
+nav ul li {
+    margin-left: 2rem;
+    display: flex;
+    align-items: center;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: color 0.3s, transform 0.3s;
+    position: relative;
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--primary-color);
+    transform: scaleX(0);
+    transition: transform 0.3s ease-out;
+}
+
+nav ul li a:hover {
+    transform: translateY(-2px);
+}
+
+nav ul li a:hover::after {
+    transform: scaleX(1);
+}
+
+/* Existing styles */
+.cta-button {
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    border-radius: 60px;
+    padding: 10px 20px;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    border: 2px solid transparent; /* Add this line */
+}
+
+.cta-button:hover,
+.cta-button:focus,
+.cta-button:active {
+    transform: translateY(-3px);
+    outline: none; /* Removes the default focus outline */
+}
+
+.cta-button:active {
+    transform: translateY(-1px); /* Slight push effect when clicked */
+}
+
+/* New styles for scrolled state */
+.scrolled .cta-button {
+    color: var(--primary-color);
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+}
+
+.scrolled .cta-button:hover,
+.scrolled .cta-button:focus,
+.scrolled .cta-button:active {
+    color: white;
+    background-color: var(--primary-color);
+}
+
+/* Add these lines for accessibility */
+.cta-button:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+/* Mobile Menu Styles */
+#menu-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    width: 60px;
+    padding: 10px;
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 3px 0;
+    background-color: var(--text-color);
+    transition: all 0.3s ease-in-out;
+}
+@media (max-width: 768px) {
+    #main-nav {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background-color: white;
+        transition: 0.3s;
+        overflow-y: auto;
+        z-index: 999;
+    }
+
+    #main-nav.active {
+        left: 0;
+    }
+
+    nav ul {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    nav ul li a {
+        color: #222; /* Ensure text is always dark in mobile menu */
+    }
+
+    /* Ensure CTA button is visible in mobile menu */
+    nav ul li a.cta-button {
+        color: var(--primary-color);
+    }
+
+    nav ul li a.cta-button:hover,
+    nav ul li a.cta-button:focus,
+    nav ul li a.cta-button:active {
+        color: white;
+    }
+}
+/* Hero Section Styles */
+#hero {
+    position: relative;
+    overflow: hidden;
+    background-color: rgb(19, 19, 19);
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#hero canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+#hero .container {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: white;
+}
+
+#hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    animation: fadeInUp 0.8s forwards;
+}
+
+#banner-button {
+    border: 3px solid white;
+    transition: 0.5s;
+    color: white;
+    text-decoration: none;
+    padding: 20px;
+    border-radius: 30px;
+    display: inline-block;
+    animation: fadeInUp 0.8s forwards 0.2s;
+}
+
+#banner-button:hover {
+    background-color: white;
+    color: black;
+}
+#heroscroll{
+    position: absolute;
+    transform: translateY(400%);
+    left: 50%;
+}
+.scroll-down {
+    display: block;
+    color: white;
+    font-size: 2rem;
+    animation: bounce 2s infinite;
+}
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-30px);
+    }
+    60% {
+        transform: translateY(-15px);
+    }
+}
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/*  OOOOOOOOOOOOOOOOOOOOOOOOOOO MAIN OOOOOOOOOOOOOOOOOOOOOOOOOO*/
+
+#contact {
+    padding: 80px 0;
+    background-color: #f8f9fa;
+}
+
+#contact h2 {
+    margin-bottom: 30px;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+}
+
+.contact-form textarea {
+    height: 150px;
+}
+
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    color: #212529;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #0069d9;
+    border-color: #0062cc;
+}
+
+.contact-info h3 {
+    margin-bottom: 20px;
+}
+
+.contact-info p {
+    margin-bottom: 10px;
+}
+
+#thank-you {
+    padding: 80px 0;
+    text-align: center;
+}
+
+#faq {
+  padding: 80px 0;
+  background-color: #f8f9fa;
+}
+
+#faq h2 {
+  text-align: center;
+  margin-bottom: 50px;
+  color: #333;
+}
+
+.faq-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.faq-category {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.faq-category h3 {
+  color: #007bff;
+  margin-bottom: 20px;
+}
+
+.faq-item {
+  margin-bottom: 20px;
+}
+
+.faq-item h4 {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.faq-item p {
+  color: #666;
+  line-height: 1.6;
+}
+
+@media (max-width: 991px) {
+  .faq-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .faq-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/*  OOOOOOOOOOOOOOOOOOOOOOOOOOO Footer Styles OOOOOOOOOOOOOOOOOOOOOOOOOO*/
+footer {
+    background-color: #181818;
+    color: white;
+    padding: 40px 0 20px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.footer-section {
+    flex-basis: 30%;
+    margin-bottom: 20px;
+    border-right: 2px solid #555;
+}
+.footer-section ul{
+    list-style: none;
+    padding: 0;
+
+}
+
+.footer-section a:hover{
+    color: var(--primary-color);
+
+}
+.footer-section a{
+    text-decoration: none;
+    color: white;
+}
+
+.footer-section h4 {
+    margin-bottom: 15px;
+}
+.social-icons a {
+    color: white;
+    font-size: 1.5rem;
+    margin-right: 15px;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.social-icons a:hover {
+    color: white;
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #555;
+}
+
+/* General Styles */
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+h3 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+p {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+/* Responsive Design */
+@media screen and (min-width: 1024px) {
+    .container #menu-toggle {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .container #menu-toggle {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    header .container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #menu-toggle {
+        display: block;
+    }
+
+    #main-nav {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background-color: white;
+        transition: 0.3s;
+        overflow-y: auto;
+        z-index: 999;
+    }
+    #heroscroll{
+        display: none;
+    }
+    #main-nav.active {
+        left: 0;
+    }
+
+    nav ul {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    #menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    #menu-toggle.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    #menu-toggle.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .two-column {
+        grid-template-columns: 1fr;
+    }
+
+    .journey-steps {
+        flex-direction: column;
+    }
+
+    .step {
+        flex-basis: 100%;
+    }
+
+    .footer-section {
+        flex-basis: 100%;
+    }
+
+    #hero h1 {
+        font-size: 2.5rem;
+    }
+
+    #hero p {
+        font-size: 1.1rem;
+    }
+
+    .product-grid,
+    .problem-grid,
+    .companies-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-in;
+}
+
+/* Hero Section Animations */
+#hero h1, #hero p, #hero .cta-button {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s forwards;
+}
+
+#hero h1 { animation-delay: 0.2s; }
+#hero p { animation-delay: 0.4s; }
+#hero .cta-button { animation-delay: 0.6s; }
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Accessibility */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Focus styles for keyboard navigation */
+a:focus,
+button:focus,
+input:focus,
+textarea:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* High contrast mode adjustments */
+@media (forced-colors: active) {
+    .button,
+    .cta-button {
+        border: 2px solid currentColor;
+    }
+}
+
+/* Print Styles */
+@media print {
+    header, footer, .cta-button, #chat-container {
+        display: none;
+    }
+
+    body {
+        font-size: 12pt;
+        line-height: 1.5;
+        background: none;
+        color: #000;
+    }
+
+    .container {
+        width: 100%;
+        max-width: none;
+        padding: 0;
+    }
+
+    h1 {
+        font-size: 24pt;
+    }
+
+    h2 {
+        font-size: 20pt;
+        page-break-after: avoid;
+    }
+
+    h3 {
+        font-size: 16pt;
+    }
+
+    p, ul, ol {
+        orphans: 3;
+        widows: 3;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    a {
+        text-decoration: none;
+        color: #000;
+    }
+
+    a[href^="http"]:after {
+        content: " (" attr(href) ")";
+    }
+}
+
+/* Additional Improvements */
+
+/* Smooth scrolling for anchor links */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Improved button and input styles */
+button,
+input[type="submit"] {
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover,
+input[type="submit"]:hover {
+    transform: translateY(-2px);
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+    border-color: var(--primary-color);
+}
+
+/* Improved image handling */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Better table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+}
+
+th, td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+}
+
+th {
+    background-color: var(--box-bg-color);
+    font-weight: bold;
+}
+
+/* Utility classes */
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.mb-1 { margin-bottom: 1rem; }
+.mb-2 { margin-bottom: 2rem; }
+.mt-1 { margin-top: 1rem; }
+.mt-2 { margin-top: 2rem; }
+    </style>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">Aletheai Solutions</a>
+            </div>
+            <button id="menu-toggle" aria-label="Toggle menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="../index.html" class="home-button"><i class="fas fa-home"></i></a></li>
+                    <li><a id="cta-js" href="../Contact/contact.html" class="cta-button">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+        <section id="hero">
+            <canvas id="waveCanvas"></canvas>
+            <div class="container">
+                <h1>PONTE EN CONTACTO</h1>
+                <div id="heroscroll">
+                    <a href="#contact" class="scroll-down">
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <!-- CONTENT START -->
+        <section id="contact">
+            <div class="container">
+                <p>¿Tienes alguna pregunta, comentario o sugerencia? ¡Nos encantaría saber de ti! Por favor, completa el siguiente formulario y nos pondremos en contacto contigo lo antes posible.</p>
+                
+                <div class="contact-grid">
+                    <div class="contact-form">
+                        <form>
+                            <input type="text" name="name" placeholder="Nombre Completo" required>
+                            <input type="email" name="email" placeholder="Correo Electrónico" required>
+                            <input type="text" name="subject" placeholder="Asunto" required>
+                            <textarea name="message" placeholder="Mensaje" required></textarea>
+                            <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+                        </form>
+                    </div>
+                    
+                    <div class="contact-info">
+                        <h3>Información de Contacto</h3>
+                        <p><i class="fas fa-phone"></i>  +52 1 2228227500</p>
+                        <p><i class="fas fa-envelope"></i>  aletheaisolutions@gmail.com</p>
+                        <p><i class="fas fa-clock"></i> Lunes - Viernes: 8:00 AM - 5:00 PM</p>
+                    </div>
+                </div>
+        </section> 
+        <section id="thank-you" style="display: none;">
+            <div class="container">
+                <h2>¡Gracias por tu mensaje!</h2>
+                <p>Hemos recibido tu mensaje y nos pondremos en contacto contigo lo antes posible. Si tu consulta es urgente, no dudes en llamarnos directamente al +1 234 567 8901.</p>
+            </div>
+        </section>
+        <section id="faq">
+            <div class="container">
+              <h2>PREGUNTAS FRECUENTES</h2>
+          
+              <div class="faq-container">
+                <div class="faq-category">
+                  <h3>Productos y Servicios</h3>
+                  <div class="faq-item">
+                    <h4>¿Qué tipos de productos y servicios ofrece AletheIA Solutions?</h4>
+                    <p>Ofrecemos soluciones basadas en inteligencia artificial para optimizar operaciones y procesos de negocio, incluyendo Billy Assistant, Market Master, DuckAssistant y EduMaster.</p>
+                  </div>
+                  <div class="faq-item">
+                    <h4>¿Sus productos son personalizables?</h4>
+                    <p>Sí, nuestras soluciones son altamente personalizables para adaptarse a las necesidades específicas de cada cliente.</p>
+                  </div>
+                  <div class="faq-item">
+                    <h4>¿Ofrecen una prueba gratuita de sus servicios?</h4>
+                    <p>Sí, ofrecemos demostraciones y períodos de prueba para que los clientes puedan experimentar nuestras soluciones antes de comprometerse.</p>
+                  </div>
+                </div>
+          
+                <div class="faq-category">
+                  <h3>Precios y Planes</h3>
+                  <div class="faq-item">
+                    <h4>¿Cuáles son sus opciones de precios?</h4>
+                    <p>Ofrecemos diversos planes de precios, desde paquetes básicos hasta soluciones premium, adaptados a diferentes tamaños y necesidades de empresas.</p>
+                  </div>
+                  <div class="faq-item">
+                    <h4>¿Tienen opciones de suscripción mensual o anual?</h4>
+                    <p>Sí, ofrecemos tanto planes mensuales como anuales para proporcionar flexibilidad a nuestros clientes.</p>
+                  </div>
+                </div>
+          
+                <div class="faq-category">
+                  <h3>Soporte Técnico</h3>
+                  <div class="faq-item">
+                    <h4>¿Ofrecen soporte técnico?</h4>
+                    <p>Sí, proporcionamos soporte técnico continuo y capacitación para todos nuestros productos y servicios.</p>
+                  </div>
+                  <div class="faq-item">
+                    <h4>¿Cuál es el tiempo de respuesta típico para las solicitudes de soporte?</h4>
+                    <p>Nuestro equipo de soporte se esfuerza por responder a todas las solicitudes dentro de las 24 horas siguientes.</p>
+                  </div>
+                </div>
+          
+                <div class="faq-category">
+                  <h3>Implementación y Capacitación</h3>
+                  <div class="faq-item">
+                    <h4>¿Cómo es el proceso de implementación de sus soluciones?</h4>
+                    <p>Nuestro proceso de implementación incluye una evaluación inicial, diseño personalizado, configuración, pruebas y capacitación del personal.</p>
+                  </div>
+                  <div class="faq-item">
+                    <h4>¿Ofrecen capacitación para el uso de sus productos?</h4>
+                    <p>Sí, proporcionamos capacitación integral para asegurar que nuestros clientes puedan aprovechar al máximo nuestras soluciones.</p>
+                  </div>
+                </div>
+              
+                <div class="faq-category">
+                  <h3>Seguridad y Privacidad</h3>
+                  <div class="faq-item">
+                    <h4>¿Cómo garantizan la seguridad de los datos?</h4>
+                    <p>Implementamos medidas de seguridad de vanguardia, incluyendo encriptación de extremo a extremo y cumplimiento con estándares internacionales como GDPR.</p>
+                  </div>
+                  <div class="faq-item">
+                    <h4>¿Sus productos cumplen con las regulaciones de privacidad?</h4>
+                    <p>Sí, nuestros productos cumplen con las regulaciones de privacidad aplicables, incluyendo GDPR y otras normativas locales.</p>
+                  </div>
+                </div>
+          
+                <div class="faq-category">
+                  <h3>Compatibilidad</h3>
+                  <div class="faq-item">
+                    <h4>¿Sus soluciones son compatibles con otros sistemas o software?</h4>
+                    <p>Sí, nuestras soluciones están diseñadas para integrarse con una amplia gama de sistemas y software existentes.</p>
+                  </div>
+                </div>
+          
+                <div class="faq-category">
+                  <h3>Clientes y Mercado Objetivo</h3>
+                  <div class="faq-item">
+                    <h4>¿Qué tipos de empresas pueden beneficiarse de sus servicios?</h4>
+                    <p>Nuestras soluciones están diseñadas principalmente para PYMES en México, pero pueden beneficiar a empresas de diversos tamaños y sectores.</p>
+                  </div>
+                  <div class="faq-item">
+                    <h4>¿Tienen experiencia en mi industria específica?</h4>
+                    <p>Tenemos experiencia en diversos sectores, incluyendo restaurantes, educación y salud. Podemos adaptar nuestras soluciones a las necesidades específicas de su industria.</p>
+                  </div>
+                </div>
+          
+                <div class="faq-category">
+                  <h3>Empresa</h3>
+                  <div class="faq-item">
+                    <h4>¿Dónde está ubicada AletheIA Solutions?</h4>
+                    <p>AletheIA Solutions está basada en México, pero ofrecemos nuestros servicios a empresas en todo el país.</p>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          </section>
+         <!-- CONTENT END-->
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Acerca de nosotros</h4>
+                    <ul>
+                        <li><a href="../About/About.html">Acerca de</a></li>
+                        <li><a href="../TC-PP/tyc.html" target="_blank">Términos y Condiciones</a></li>
+                        <li><a href="">Política de Privacidad</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <ul>
+                        <li><a href="mailto:aletheaisolutions@gmail.com"><i class="fas fa-envelope"></i> Envia un correo</a></li>
+                        <li><a href="https://wa.me/2228227500" target="_blank"><i class="fab fa-whatsapp"></i> Escríbenos</a></li>
+                        <li><a href="tel:+5212228227500" onclick="copyToClipboard('+12345678901')"><i class="fas fa-phone-alt"></i> Llámanos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Síguenos</h4>
+                    <div class="social-icons">
+                        <a href="https://www.instagram.com/alethe.iasolutions"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 AletheAI Solutions. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        const canvas = document.getElementById('waveCanvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const numLayers = 8;
+        const numPoints = 360;
+        let time = 0;
+
+        function createColorGradient(t) {
+            const r = Math.sin(t * 0.3) * 127 + 128;
+            const g = Math.sin(t * 0.3 + 2) * 127 + 128;
+            const b = Math.sin(t * 0.3 + 4) * 127 + 128;
+            return `rgba(${r}, ${g}, ${b}, 0.5)`;
+        }
+
+        function drawMandalaLayer(index, color) {
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const maxRadius = Math.min(canvas.width, canvas.height) * 0.4;
+
+            ctx.beginPath();
+            for (let i = 0; i <= numPoints; i++) {
+                const angle = (i / numPoints) * Math.PI * 2;
+                const layerRadius = maxRadius * ((index + 1) / numLayers);
+                
+                const baseRadius = layerRadius + Math.sin(time * 2 + index) * 20;
+                
+                const symmetry = 8 + index * 2;
+                const waveOffset = Math.sin(angle * symmetry + time * 3) * 15;
+                const pulseOffset = Math.sin(time * 4 + index * 0.5) * 10;
+
+                const radius = baseRadius + waveOffset + pulseOffset;
+                
+                const x = centerX + radius * Math.cos(angle);
+                const y = centerY + radius * Math.sin(angle);
+                
+                if (i === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            }
+            ctx.closePath();
+            ctx.strokeStyle = color;
+            ctx.lineWidth = 2;
+            ctx.stroke();
+        }
+
+        function animate() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = 0; i < numLayers; i++) {
+                const color = createColorGradient(time * 0.1 + i * 0.5);
+                drawMandalaLayer(i, color);
+            }
+
+            time += 0.02;
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+// JavaScript: Change header styles on scroll
+window.addEventListener('scroll', function() {
+    var header = document.querySelector('header'); // Adjust the selector as needed
+    var headerElements = header.querySelectorAll('*'); // Selects all child elements within the header
+
+    if (window.scrollY > 50) { // Threshold value, adjust as needed
+        header.style.backgroundColor = '#fff'; // Change header background to white
+        headerElements.forEach(function(element) {
+            element.style.color = '#222'; // Change text color of all elements to #222
+        });
+    } else {
+        header.style.backgroundColor = ''; // Revert header background to original
+        headerElements.forEach(function(element) {
+            element.style.color = ''; // Revert text color of all elements to original
+        });
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.getElementById('menu-toggle');
+    const mainNav = document.getElementById('main-nav');
+
+    menuToggle.addEventListener('click', function() {
+        menuToggle.classList.toggle('active');
+        mainNav.classList.toggle('active');
+    });
+});
+
+function copyToClipboard(text) {
+    if (!navigator.clipboard) {
+        // Clipboard API not available
+        alert('Clipboard not supported, please manually copy the phone number.');
+        return;
+    }
+    navigator.clipboard.writeText(text).then(function() {
+        alert('Phone number copied to clipboard.');
+    }, function(err) {
+        console.error('Could not copy text: ', err);
+    });
+}
+
+// Function to add the white font color class on scroll
+function handleScroll() {
+    const ctaButton = document.getElementById('cta-js');
+    if (ctaButton) {
+        ctaButton.classList.add('scroll-white-font');
+    }
+}
+
+// Attach the scroll event listener to the window
+window.addEventListener('scroll', handleScroll);
+
+
+    </script>
+</body>
+</html>
